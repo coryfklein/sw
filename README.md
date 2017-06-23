@@ -5,6 +5,9 @@ Terminal stopwatch
 
 # Install
 
-To install `sw`, run
+To install `sw` using [Sinister](https://github.com/jamesqo/sinister), run
 
     wget -q -O - http://git.io/sinister | sh -s -- -u https://raw.githubusercontent.com/coryfklein/sw/master/sw
+
+Or just [download sw directly](https://raw.githubusercontent.com/coryfklein/sw/master/sw) and place it on your PATH somewhere.
+
