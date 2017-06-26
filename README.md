@@ -14,3 +14,13 @@ Or just [download sw directly](https://raw.githubusercontent.com/coryfklein/sw/m
 # Usage
 
     sw
+     - start a stopwatch from 0, save start time
+    sw [-r|--resume]
+     - start a stopwatch from the last saved start time (or current time if no last saved start time exists)
+     - "-r" stands for --resume
+
+# Centiseconds
+
+macOS comes bundled with BSD's `date` which does not print sub-second dates and thus `sw` will not print centiseconds. I recommend installing GNU `date` to enable this improved functionality:
+
+    brew install coreutils
