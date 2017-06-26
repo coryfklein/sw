@@ -14,7 +14,7 @@ Or just [download sw directly](https://raw.githubusercontent.com/coryfklein/sw/m
 # Usage
 
     sw
-     - start a stopwatch from 0, save start time
+     - start a stopwatch from 0, save start time in ~/.sw
     sw [-r|--resume]
      - start a stopwatch from the last saved start time (or current time if no last saved start time exists)
      - "-r" stands for --resume
