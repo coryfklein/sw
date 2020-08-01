@@ -47,7 +47,7 @@ else
 fi
 
 # GNU date accepts the input date differently than BSD
-if [[ $USE_GNU_DATE == "0" ]]; then
+if [[ $USE_GNU_DATE == "1" ]]; then
     DATE_INPUT="--date now-${START_TIME}sec"
 else
     DATE_INPUT="-v-${START_TIME}S"
@@ -55,7 +55,7 @@ fi
 
 while [ true ]; do
     STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
-    printf "\r\e%s" $STOPWATCH
+    printf "\r%s" $STOPWATCH
     sleep 0.03
 done
 
