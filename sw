@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Usage:
 # sw
@@ -14,14 +15,18 @@ function finish {
 
 trap finish EXIT
 
-# Use GNU date if possible as it's most likely to have nanoseconds available
-hash gdate 2>/dev/null
-USE_GNU_DATE=$?
+# Use GNU date if possible as it's most likely to have nanoseconds available.
+if hash gdate 2>/dev/null; then
+    GNU_DATE=gdate
+elif date --version | grep 'GNU coreutils' >/dev/null; then
+    GNU_DATE=date
+fi
+
 function datef {
-    if [[ $USE_GNU_DATE == "0" ]]; then 
-        gdate "$@"
-    else
+    if [[ -z "$GNU_DATE" ]]; then
         date "$@"
+    else
+        $GNU_DATE "$@"
     fi
 }
 
@@ -47,10 +52,10 @@ else
 fi
 
 # GNU date accepts the input date differently than BSD
-if [[ $USE_GNU_DATE == "0" ]]; then
-    DATE_INPUT="--date now-${START_TIME}sec"
-else
+if [[ -z "$GNU_DATE" ]]; then
     DATE_INPUT="-v-${START_TIME}S"
+else
+    DATE_INPUT="--date now-${START_TIME}sec"
 fi
 
 while [ true ]; do
@@ -58,4 +63,3 @@ while [ true ]; do
     printf "\r\e%s" $STOPWATCH
     sleep 0.03
 done
-
