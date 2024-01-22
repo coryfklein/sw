@@ -184,7 +184,7 @@ stty -echo
 # Open a file descriptor to a process that never generates any input. This
 # is used to hack a sleep-like logic using read because read doesn't create
 # a new process.
-exec 3<> <(:) 2>/dev/null || {
+{ exec 3<> <(:); } 2>/dev/null || {
   fifo=$(mktemp -u)
   mkfifo -m 700 "$fifo"
   exec 3<>"$fifo"
