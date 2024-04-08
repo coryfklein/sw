@@ -18,7 +18,7 @@ trap finish EXIT
 # Use GNU date if possible as it's most likely to have nanoseconds available.
 if hash gdate 2>/dev/null; then
     GNU_DATE=gdate
-elif date --version | grep 'GNU coreutils' >/dev/null; then
+elif date --version 2> /dev/null | grep 'GNU coreutils' >/dev/null; then
     GNU_DATE=date
 fi
 
